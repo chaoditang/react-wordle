@@ -1,6 +1,6 @@
 {
-  "short_name": "Reactle",
-  "name": "Reactle",
+  "short_name": "Wordle of Today",
+  "name": "Wordle of Today",
   "icons": [
     {
       "src": "favicon.ico",
