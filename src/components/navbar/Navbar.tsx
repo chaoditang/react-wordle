@@ -1,13 +1,10 @@
 import {
-  CalendarIcon,
   ChartBarIcon,
   CogIcon,
   InformationCircleIcon,
 } from '@heroicons/react/outline'
 
-import { ENABLE_ARCHIVED_GAMES } from '../../constants/settings'
 import { GAME_TITLE } from '../../constants/strings'
-import { Sidebar } from '../sidebar/Sidebar'
 
 type Props = {
   setIsInfoModalOpen: (value: boolean) => void
@@ -19,27 +16,23 @@ type Props = {
 export const Navbar = ({
   setIsInfoModalOpen,
   setIsStatsModalOpen,
-  setIsDatePickerModalOpen,
   setIsSettingsModalOpen,
 }: Props) => {
   return (
-    <div className="navbar">
-      <Sidebar />
-      <div className="navbar-content px-5 short:h-auto">
-        <div className="flex">
-          {ENABLE_ARCHIVED_GAMES && (
-            <CalendarIcon
-              className="ml-3 h-6 w-6 cursor-pointer dark:stroke-white"
-              onClick={() => setIsDatePickerModalOpen(true)}
-            />
-          )}
-        </div>
-        <p className="text-xl font-bold dark:text-white">{GAME_TITLE}</p>
-        <div className="right-icons">
+    <div className="top-3">
+      <div className="top-3 mx-20 flex flex-row justify-between short:h-auto">
+        <div className="flex w-1/3 items-center justify-end">
           <InformationCircleIcon
             className="mr-3 h-6 w-6 cursor-pointer dark:stroke-white"
             onClick={() => setIsInfoModalOpen(true)}
           />
+        </div>
+        <div className="w-1/3 justify-between">
+          <p className="text-center text-3xl font-bold dark:text-white">
+            {GAME_TITLE}
+          </p>
+        </div>
+        <div className="flex w-1/3 items-center">
           <ChartBarIcon
             className="mr-3 h-6 w-6 cursor-pointer dark:stroke-white"
             onClick={() => setIsStatsModalOpen(true)}

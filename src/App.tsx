@@ -1,15 +1,15 @@
 import './App.css'
 
-import { Disclosure } from '@headlessui/react'
-import { ChevronUpIcon, ClockIcon } from '@heroicons/react/outline'
+import { ClockIcon } from '@heroicons/react/outline'
 import { format } from 'date-fns'
 import { default as GraphemeSplitter } from 'grapheme-splitter'
 import { useEffect, useState } from 'react'
 import Div100vh from 'react-div-100vh'
 
 import { AlertContainer } from './components/alerts/AlertContainer'
-import { Cell } from './components/grid/Cell'
 import { Grid } from './components/grid/Grid'
+import Footer from './components/infs/Footer'
+import HeadDes from './components/infs/HeadDes'
 import { Keyboard } from './components/keyboard/Keyboard'
 import { DatePickerModal } from './components/modals/DatePickerModal'
 import { InfoModal } from './components/modals/InfoModal'
@@ -67,7 +67,7 @@ function App() {
     useAlert()
   const [currentGuess, setCurrentGuess] = useState('')
   const [isGameWon, setIsGameWon] = useState(false)
-  const [isInfoModalOpen, setIsInfoModalOpen] = useState(true)
+  const [isInfoModalOpen, setIsInfoModalOpen] = useState(false)
   const [isStatsModalOpen, setIsStatsModalOpen] = useState(false)
   const [isDatePickerModalOpen, setIsDatePickerModalOpen] = useState(false)
   const [isMigrateStatsModalOpen, setIsMigrateStatsModalOpen] = useState(false)
@@ -367,133 +367,11 @@ function App() {
         </div>
       </div>
       <div className="w-full px-4 pt-16">
-        <div className="mx-auto w-full max-w-md rounded-2xl bg-white p-2">
-          <Disclosure>
-            {({ open }) => (
-              <>
-                <Disclosure.Button className="flex w-full justify-between rounded-lg bg-purple-100 px-4 py-2 text-left text-sm font-medium text-purple-900 hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500/75">
-                  <span>How To Play?</span>
-                  <ChevronUpIcon
-                    className={`${
-                      open ? 'rotate-180 transform' : ''
-                    } h-5 w-5 text-purple-500`}
-                  />
-                </Disclosure.Button>
-                <Disclosure.Panel className="px-4 pb-2 pt-4 text-sm text-gray-500">
-                  Guess the word in 6 tries. After each guess, the color of the
-                  tiles will change to show how close your guess was to the
-                  word.
-                  <div className="mb-1 mt-4 flex justify-center">
-                    <Cell
-                      isRevealing={true}
-                      isCompleted={true}
-                      value="W"
-                      status="correct"
-                    />
-                    <Cell value="E" isCompleted={true} />
-                    <Cell value="A" isCompleted={true} />
-                    <Cell value="R" isCompleted={true} />
-                    <Cell value="Y" isCompleted={true} />
-                  </div>
-                  <p className="text-sm text-gray-500 dark:text-gray-300">
-                    The letter W is in the word and in the correct spot.
-                  </p>
-                  <div className="mb-1 mt-4 flex justify-center">
-                    <Cell value="P" isCompleted={true} />
-                    <Cell value="I" isCompleted={true} />
-                    <Cell
-                      isRevealing={true}
-                      isCompleted={true}
-                      value="L"
-                      status="present"
-                    />
-                    <Cell value="O" isCompleted={true} />
-                    <Cell value="T" isCompleted={true} />
-                  </div>
-                  <p className="text-sm text-gray-500 dark:text-gray-300">
-                    The letter L is in the word but in the wrong spot.
-                  </p>
-                  <div className="mb-1 mt-4 flex justify-center">
-                    <Cell value="V" isCompleted={true} />
-                    <Cell value="A" isCompleted={true} />
-                    <Cell value="G" isCompleted={true} />
-                    <Cell
-                      isRevealing={true}
-                      isCompleted={true}
-                      value="U"
-                      status="absent"
-                    />
-                    <Cell value="E" isCompleted={true} />
-                  </div>
-                  <p className="text-sm text-gray-500 dark:text-gray-300">
-                    The letter U is not in the word in any spot.
-                  </p>
-                </Disclosure.Panel>
-              </>
-            )}
-          </Disclosure>
-          <Disclosure>
-            {({ open }) => (
-              <>
-                <Disclosure.Button className="flex w-full justify-between rounded-lg bg-purple-100 px-4 py-2 text-left text-sm font-medium text-purple-900 hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500/75">
-                  <span>What is this?</span>
-                  <ChevronUpIcon
-                    className={`${
-                      open ? 'rotate-180 transform' : ''
-                    } h-5 w-5 text-purple-500`}
-                  />
-                </Disclosure.Button>
-                <Disclosure.Panel className="px-4 pb-2 pt-4 text-sm text-gray-500">
-                  <p>
-                    WordPlay is similar to Wordle, an online word guessing game
-                    based on concepts from TV game show Lingo, also referred to
-                    as the green and yellow game.
-                  </p>
-                  <p>
-                    Important note: WordPlay has no affiliation with Wordle;
-                    rather, I am simply a big fan who wanted to play/practice
-                    this game more regularly and practice with it myself.
-                  </p>
-                  <p>
-                    Since New York Times now owns it. OK, fine. What
-                    distinguishes WordPlay from Wordle, and why would I choose
-                    this over it? Well, you wouldn't. Wordle remains my go-to
-                    game; but when I need a challenge with friends or just want
-                    something fun in between I turn to WordPlay for some
-                    friendly competition. WordPlay does have some differences
-                    compared to its competitors; each offer its own set of
-                    advantages and drawbacks.
-                  </p>
-                </Disclosure.Panel>
-              </>
-            )}
-          </Disclosure>
-          <Disclosure>
-            {({ open }) => (
-              <>
-                <Disclosure.Button className="flex w-full justify-between rounded-lg bg-purple-100 px-4 py-2 text-left text-sm font-medium text-purple-900 hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500/75">
-                  <span>How WordPlay Calculates Scores?</span>
-                  <ChevronUpIcon
-                    className={`${
-                      !open ? 'rotate-180 transform' : ''
-                    } h-5 w-5 text-purple-500`}
-                  />
-                </Disclosure.Button>
-                <Disclosure.Panel className="px-4 pb-2 pt-4 text-sm text-gray-500">
-                  <p>
-                    Currently, scoring is simple. Points are awarded for guesses
-                    that you do not use. Green (position matching) letters are
-                    worth points. Yellow letters are worth points. Please note
-                    that the games *are* not currently timed. You do not receive
-                    points for playing fast. You don't get points for playing
-                    quickly.
-                  </p>
-                </Disclosure.Panel>
-              </>
-            )}
-          </Disclosure>
-        </div>
+        <hr />
+        <br />
+        <HeadDes />
       </div>
+      <Footer />
     </Div100vh>
   )
 }
