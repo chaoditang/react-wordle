@@ -29,7 +29,7 @@ export const Navbar = ({
         </div>
         <div className="w-1/3 justify-between">
           <p className="text-center text-3xl font-bold dark:text-white">
-            {GAME_TITLE}
+            Wordles Games
           </p>
         </div>
         <div className="flex w-1/3 items-center">
